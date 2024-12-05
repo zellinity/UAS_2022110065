@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('playstations', function (Blueprint $table) {
+        Schema::create('kurirs', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis');
-            $table->text('spesifikasi')->nullable();
-            $table->decimal('TarifHarian', 10, 2);
+            $table->string('nama_kurir');
+            $table->string('email')->unique();
+            $table->string('nomor_telepon');
+            $table->text('alamat')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('playstations');
+        Schema::dropIfExists('kurirs');
     }
 };

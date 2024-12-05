@@ -29,7 +29,6 @@ class PlaystationResource extends Resource
                     ->placeholder('Contoh: PS5')
                     ->required(),
 
-                // Form untuk 'Spesifikasi' PlayStation
                 TextInput::make('Spesifikasi')
                     ->label('Spesifikasi')
                     ->placeholder('Contoh: RAM 16GB, 1TB Storage')
@@ -40,6 +39,13 @@ class PlaystationResource extends Resource
                     ->placeholder('Contoh: 100000')
                     ->required()
                     ->numeric(),
+
+                Forms\Components\FileUpload::make('Foto')
+                    ->label('Foto PlayStation')
+                    ->image()
+                    ->directory('uploads/playstations')
+                    ->required(),
+
             ]);
     }
 
@@ -47,16 +53,23 @@ class PlaystationResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('Foto')
+                    ->label('Foto')
+                    ->rounded(),
+
                 TextColumn::make('Jenis')
                     ->label('jenis')
-                    ->limit(100),
+                    ->limit(100)
+                    ->searchable(),
 
-                    TextColumn::make('spesifikasi')
-                    ->limit(1000),
+
+                TextColumn::make('spesifikasi')
+                    ->limit(1000)
+                    ->searchable(),
 
                 TextColumn::make('TarifHarian')
                     ->label('Tarif Harian')
-                    ->getStateUsing(fn (Playstation $record) => number_format($record->TarifHarian, 0, ',', '.'))
+                    ->getStateUsing(fn(Playstation $record) => number_format($record->TarifHarian, 0, ',', '.'))
             ])
             ->filters([ //
             ])

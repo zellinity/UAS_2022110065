@@ -53,7 +53,9 @@ class AksesoriResource extends Resource
             ->columns([
                 TextColumn::make('nama_aksesoris')
                     ->label('Nama Aksesori')
-                    ->limit(50),
+                    ->limit(50)
+                    ->searchable(),
+
 
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi')
@@ -61,15 +63,15 @@ class AksesoriResource extends Resource
 
                 TextColumn::make('harga')
                     ->label('Harga')
-                    ->getStateUsing(fn (Aksesori $record): string => number_format($record->harga, 0, ',', '.')),
+                    ->getStateUsing(fn(Aksesori $record): string => number_format($record->harga, 0, ',', '.')),
 
                 TextColumn::make('stok')
                     ->label('Stok'),
             ])
-            ->filters([
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -80,8 +82,7 @@ class AksesoriResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public static function getPages(): array

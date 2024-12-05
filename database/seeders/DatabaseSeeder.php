@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             PlaystationSeeder::class,
+            AksesoriSeeder::class,
+            KurirSeeder::class,
+            PelangganSeeder::class
         ]);
     }
 }

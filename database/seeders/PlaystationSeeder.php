@@ -19,7 +19,7 @@ class PlaystationSeeder extends Seeder
                 'TarifHarian' => 270000,
             ],
             [
-                'jenis' => 'Playstation 4',
+                'jenis' => 'Playstati on 4',
                 'Spesifikasi' => 'RAM 8GB, HDD 500GB, Full HD Gaming',
                 'TarifHarian' => 250000,
             ],
